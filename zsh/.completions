@@ -1,0 +1,40 @@
+# vim: set filetype=zsh:
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/anton/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/anton/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/anton/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/anton/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+conda deactivate
+# <<< conda initialize <<<
+
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
+
+# >>>> Vagrant command completion (start)
+fpath=(/opt/vagrant/embedded/gems/2.2.17/gems/vagrant-2.2.17/contrib/zsh $fpath)
+compinit
+# <<<<  Vagrant command completion (end)
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/anton/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+# bitwarden autocompletion
+eval "$(bw completion --shell zsh); compdef _bw bw;"

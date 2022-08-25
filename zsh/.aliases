@@ -1,0 +1,28 @@
+# vim: set filetype=zsh:
+# Configuration aliases
+
+alias zshconf="$EDITOR ~/.zshrc"
+alias p10kconf="$EDITOR ~/.p10k.zsh"
+alias vimconf="$EDITOR ~/.vimrc"
+alias tmuxconf="$EDITOR ~/.tmux.conf"
+
+# Make g++-11 default g++
+
+alias g++=g++-11
+
+# exa aliases
+
+alias ll="exa -l --icons"
+alias l="exa -lFh --icons"
+alias la="exa -laFh --icons"
+
+# Enables Ctrl+O for neomutt
+
+alias neomutt="stty discard undef && neomutt"
+
+# Postgres aliases
+
+alias startpost='pg_ctl start -D "/usr/local/var/postgres"'
+alias stoppost='pg_ctl stop -D "/usr/local/var/postgres"'
+alias restartpost='stoppost && sleep 1 && startpost'
+alias statuspost='pg_ctl status -D "/usr/local/var/postgres"'

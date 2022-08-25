@@ -1,0 +1,31 @@
+# vim: set filetype=zsh:
+
+# Path to your oh-my-zsh installation.
+export ZSH="${HOME}/.oh-my-zsh"
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(aliases colored-man-pages common-aliases copyfile copypath jump httpie git gh macos sudo urltools zsh-autosuggestions zsh-syntax-highlighting)
+
+export EDITOR='vim'
+export BROWSER='open -u'
+
+# Highlighting settings
+
+ZSH_HIGHLIGHTHIGHLIGHTERS=(main brackets cursor)
+
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:/Users/anton/Documents/tg/bin:/usr/local/opt/texinfo/bin:/opt/metasploit-framework/bin:/usr/local/opt/ncurses/bin:/usr/local/opt/openjdk/bin:$PATH"
+
+export MallocNanoZone=0
+
+export EXA_COLORS="da=1;36"

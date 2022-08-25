@@ -1,0 +1,4 @@
+# vim: set filetype=zsh:
+rmd () {
+    pandoc $1 | lynx -stdin
+}
