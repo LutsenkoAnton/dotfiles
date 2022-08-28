@@ -10,6 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'andreshazard/vim-freemarker'
 Plug 'davidhalter/jedi-vim'
 Plug 'bling/vim-bufferline'
+Plug 'tibabit/vim-templates'
 call plug#end()
 
 syntax on
@@ -56,5 +57,12 @@ let g:ale_cpp_cc_executable="g++-11"
 let g:ale_cpp_cc_options="-std=c++20 -Wall"
 let g:ale_linters_ignore={'cpp': ['clangd']}
 
+let g:tmpl_search_paths = ["~/.templates/"]
+
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>t :vert botright term<CR>
+nnoremap <leader>yf :silent w !pbcopy<CR>
+nnoremap <leader>yy :silent .w !pbcopy<CR>
+nnoremap <leader>v :r !pbpaste<CR>
+nnoremap <leader>y "+
+nnoremap <leader>s ggdG:TemplateInit sport.cpp<CR>
