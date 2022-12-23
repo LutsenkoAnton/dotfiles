@@ -3,14 +3,17 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
-Plug 'dense-analysis/ale'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
 Plug 'andreshazard/vim-freemarker'
-Plug 'davidhalter/jedi-vim'
 Plug 'bling/vim-bufferline'
+Plug 'lervag/vimtex'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'tibabit/vim-templates'
+Plug 'mbbill/undotree'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 syntax on
@@ -34,6 +37,9 @@ set autoindent
 set smartindent
 set backspace=indent,eol,start
 
+set splitbelow
+set splitright
+
 set foldmethod=syntax
 set nofoldenable
 
@@ -53,16 +59,25 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 let g:bufferline_echo=0
 let g:airline_powerline_fonts=1
 
-let g:ale_cpp_cc_executable="g++-11"
-let g:ale_cpp_cc_options="-std=c++20 -Wall"
-let g:ale_linters_ignore={'cpp': ['clangd']}
+"let g:ale_cpp_cc_executable="g++-12"
+"let g:ale_cpp_cc_options="-std=c++20 -Wall"
+"let g:ale_linters_ignore={'cpp': ['clangd']}
 
 let g:tmpl_search_paths = ["~/.templates/"]
 
+let g:NERDSpaceDelims = 1
+
 nnoremap <leader>l :set list!<CR>
-nnoremap <leader>t :vert botright term<CR>
+nnoremap <leader>m :vert botright term<CR>
+nnoremap <leader>s :!cf submit<CR>
+nnoremap <leader>t :!cf test <CR>
 nnoremap <leader>yf :silent w !pbcopy<CR>
 nnoremap <leader>yy :silent .w !pbcopy<CR>
 nnoremap <leader>v :r !pbpaste<CR>
 nnoremap <leader>y "+
-nnoremap <leader>s ggdG:TemplateInit sport.cpp<CR>
+nnoremap <leader>f :YcmCompleter Format<CR>
+nnoremap <leader>x :YcmCompleter FixIt<CR>
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+
+let g:vimtex_view_method = 'skim'

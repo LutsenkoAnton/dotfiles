@@ -6,9 +6,9 @@ alias p10kconf="$EDITOR ~/.p10k.zsh"
 alias vimconf="$EDITOR ~/.vimrc"
 alias tmuxconf="$EDITOR ~/.tmux.conf"
 
-# Make g++-11 default g++
+# Make g++-12 default g++
 
-alias g++=g++-11
+alias g++=g++-12
 
 # exa aliases
 
