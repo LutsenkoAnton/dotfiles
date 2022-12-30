@@ -15,7 +15,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases colored-man-pages common-aliases copyfile copypath jump httpie git gh macos sudo urltools zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(aliases colored-man-pages common-aliases copyfile copypath jump httpie git gh macos sudo urltools zsh-autosuggestions zsh-vi-mode fast-syntax-highlighting)
 
 export EDITOR='vim'
 export BROWSER='open -u'
