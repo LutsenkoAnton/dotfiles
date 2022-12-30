@@ -7,13 +7,3 @@ nnoremap <buffer>  <leader>r :call RunCppFile()<CR>
 :   execute ":!" . expand("%:p:h") . "/a.out"
 :   silent execute ":!rm -rf " . expand("%:p:h") . "/a.out*"
 :endfunction   
-
-let b:ale_fixers = [
-    \'clang-format', 
-    \'clangtidy',
-\]
-
-let b:ale_linters = [
-    \'clang-format', 
-    \'clangtidy',
-\]
