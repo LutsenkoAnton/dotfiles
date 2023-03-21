@@ -4,11 +4,19 @@
 alias zshconf="$EDITOR ~/.zshrc"
 alias p10kconf="$EDITOR ~/.p10k.zsh"
 alias vimconf="$EDITOR ~/.vimrc"
+alias nvimconf="$EDITOR ~/.config/nvim/init.lua"
 alias tmuxconf="$EDITOR ~/.tmux.conf"
 
-# Make g++-12 default g++
+# Make program replacements
 
 alias g++=g++-12
+alias vim=nvim
+alias vi=nvim
+alias grep=rg
+alias ls=exa
+alias ps=procs
+alias diff=delta
+
 
 # exa aliases
 
@@ -26,3 +34,5 @@ alias startpost='pg_ctl start -D "/usr/local/var/postgres"'
 alias stoppost='pg_ctl stop -D "/usr/local/var/postgres"'
 alias restartpost='stoppost && sleep 1 && startpost'
 alias statuspost='pg_ctl status -D "/usr/local/var/postgres"'
+
+

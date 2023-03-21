@@ -11,15 +11,17 @@ Plug 'andreshazard/vim-freemarker'
 Plug 'bling/vim-bufferline'
 Plug 'lervag/vimtex'
 Plug 'ycm-core/YouCompleteMe'
-Plug 'tibabit/vim-templates'
+Plug 'SirVer/ultisnips'
 Plug 'mbbill/undotree'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-scripts/applescript.vim'
+Plug 'tommcdo/vim-lion'
 call plug#end()
 
 syntax on
 colorscheme codedark
 set laststatus=2
-set guifont="MesloLGS NF":h16
+set guifont="Fira Code":h16
 
 filetype on
 filetype plugin on
@@ -56,19 +58,16 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+autocmd BufNewFile,BufRead * set formatoptions-=ro
+
+
 let g:bufferline_echo=0
 let g:airline_powerline_fonts=1
-
-"let g:ale_cpp_cc_executable="g++-12"
-"let g:ale_cpp_cc_options="-std=c++20 -Wall"
-"let g:ale_linters_ignore={'cpp': ['clangd']}
-
-let g:tmpl_search_paths = ["~/.templates/"]
 
 let g:NERDSpaceDelims = 1
 
 nnoremap <leader>l :set list!<CR>
-nnoremap <leader>m :vert botright term<CR>
+nnoremap <leader>m :vert term<CR>
 nnoremap <leader>s :!cf submit<CR>
 nnoremap <leader>t :!cf test <CR>
 nnoremap <leader>yf :silent w !pbcopy<CR>
@@ -81,3 +80,6 @@ nnoremap <leader>x :YcmCompleter FixIt<CR>
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 let g:vimtex_view_method = 'skim'
+
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsExpandTrigger="<c-l>"

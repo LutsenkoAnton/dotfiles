@@ -15,19 +15,32 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases colored-man-pages common-aliases copyfile copypath jump httpie git gh macos sudo urltools zsh-autosuggestions zsh-vi-mode fast-syntax-highlighting)
+plugins=(aliases colored-man-pages common-aliases copyfile copypath jump httpie git gh macos sudo zsh-autosuggestions zsh-vi-mode fast-syntax-highlighting)
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export BROWSER='open -u'
 
 # Highlighting settings
 
-ZSH_HIGHLIGHTHIGHLIGHTERS=(main brackets cursor)
+# ZSH_HIGHLIGHTHIGHLIGHTERS=(main brackets cursor)
 
-export PATH="/usr/local/sbin:$HOME/bin:/Users/anton/Documents/tg/bin:/usr/local/opt/texinfo/bin:/opt/metasploit-framework/bin:/usr/local/opt/ncurses/bin:/usr/local/opt/openjdk/bin:/usr/local/Cellar/node/18.10.0/bin:/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$HOME/.emacs.d/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:/Users/anton/Documents/tg/bin:/usr/local/opt/texinfo/bin:/opt/metasploit-framework/bin:/usr/local/opt/ncurses/bin:/usr/local/opt/openjdk/bin:/usr/local/Cellar/node/18.10.0/bin:$PATH"
+
 
 export MallocNanoZone=0
 
 export EXA_COLORS="da=1;36"
 
 export WolframKernel=/Applications/Wolfram\ Engine.app/Contents/MacOS/WolframKernel
+
+# Zsh-vi-mode settings
+function zvm_after_lazy_keybindings() {
+    bindkey -M vicmd 'k' up-line-or-search
+    bindkey -M vicmd 'j' down-line-or-search
+}
+function zvm_after_init() {
+    bindkey "^[[A" up-line-or-search
+    bindkey "^[[B" down-line-or-search
+}
+zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+# ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_ZLE
