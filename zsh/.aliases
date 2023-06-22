@@ -10,8 +10,8 @@ alias tmuxconf="$EDITOR ~/.tmux.conf"
 # Make program replacements
 
 alias g++=g++-12
-alias vim=nvim
-alias vi=nvim
+alias vim=neovide
+alias vi=vim
 alias grep=rg
 alias ls=exa
 alias ps=procs

@@ -17,7 +17,7 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(aliases colored-man-pages common-aliases copyfile copypath jump httpie git gh macos sudo zsh-autosuggestions zsh-vi-mode fast-syntax-highlighting)
 
-export EDITOR='nvim'
+export EDITOR='neovide'
 export BROWSER='open -u'
 
 # Highlighting settings
@@ -30,6 +30,8 @@ export PATH="/usr/local/opt/ruby/bin:$HOME/.emacs.d/bin:/usr/local/bin:/usr/loca
 export MallocNanoZone=0
 
 export EXA_COLORS="da=1;36"
+
+export NEOVIDE_MULTIGRID=1
 
 export WolframKernel=/Applications/Wolfram\ Engine.app/Contents/MacOS/WolframKernel
 
