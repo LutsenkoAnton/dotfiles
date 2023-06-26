@@ -76,7 +76,18 @@ vim.fn.sign_define("DiagnosticSignInfo", { texthl = "DiagnosticSignInfo", text =
 
 
 -- Enables description of error in the same line
-vim.diagnostic.config({ virtual_text = { prefix = "●" } })
+vim.diagnostic.config({
+    severity_sort = true,
+    float = { border = 'rounded' },
+    virtual_text = { prefix = "●" }
+})
+
+-- Creates round border around hover screen
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+        border = 'rounded',
+    }
+)
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
@@ -123,8 +134,8 @@ cmp.setup({
 --------------------------- DAP ---------------------------
 
 require("mason-nvim-dap").setup({
-    -- ensure_installed = {'codelldb'},
-    ensure_installed = { 'cppdbg' },
+    ensure_installed = { 'codelldb' },
+    -- ensure_installed = { 'cppdbg' },
     handlers = {
         function(config)
             -- all sources with no handler get passed here
@@ -132,22 +143,30 @@ require("mason-nvim-dap").setup({
             -- Keep original functionality
             require('mason-nvim-dap').default_setup(config)
         end,
-        cppdbg = function(config)
+        codelldb = function(config)
             for i, _ in pairs(config.configurations) do
-                config.configurations[i].setupCommands = {
-                    {
-                        text = '-enable-pretty-printing',
-                        description = 'enable pretty printing',
-                        ignoreFailures = false
-                    },
-                    {
-                        text = '-gdb-set disassembly-flavor intel',
-                        ignoreFailures = true
-                    },
+                config.configurations[i].sourceMap = {
+                    [os.getenv("HOME") .. "/documents"] = (os.getenv("HOME") .. "/Documents"), -- For some reason codelldb has some troubles with case sensitivity
                 }
             end
             require('mason-nvim-dap').default_setup(config) -- don't forget this!
         end,
+        -- cppdbg = function(config)
+        --     for i, _ in pairs(config.configurations) do
+        --         config.configurations[i].setupCommands = {
+        --             {
+        --                 text = '-enable-pretty-printing',
+        --                 description = 'enable pretty printing',
+        --                 ignoreFailures = false
+        --             },
+        --             {
+        --                 text = '-gdb-set disassembly-flavor intel',
+        --                 ignoreFailures = true
+        --             },
+        --         }
+        --     end
+        --     require('mason-nvim-dap').default_setup(config) -- don't forget this!
+        -- end,
     },
 })
 require("dapui").setup()
@@ -156,13 +175,6 @@ local dap, dapui = require("dap"), require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 dap.listeners.before.event_exited["dapui_config"] = dapui.close
--- dap.configurations.cpp.= {
---     {
---         text = '-enable-pretty-printing',
---         description = 'enable pretty printing',
---         ignoreFailures = false
---     },
--- }
 
 -- DAP inline text
 require("nvim-dap-virtual-text").setup {
@@ -226,12 +238,4 @@ vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
 vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
 vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
     require('dap.ui.widgets').preview()
-end)
-vim.keymap.set('n', '<Leader>ds', function()
-    local widgets = require('dap.ui.widgets')
-    widgets.centered_float(widgets.scopes)
-end)
-vim.keymap.set('n', '<Leader>dw', function()
-    local widgets = require('dap.ui.widgets')
-    widgets.centered_float(widgets.watches)
 end)
