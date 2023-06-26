@@ -98,11 +98,19 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+-- Completion for DAP
+require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+    sources = {
+        { name = "dap" },
+    },
+})
+
 -- Setup completion
 cmp.setup({
     sources = {
         { name = 'path' },
         { name = 'nvim_lsp' },
+        { name = 'calc' },
         { name = 'buffer',  keyword_length = 3 },
         { name = 'luasnip', keyword_length = 2 },
     },
@@ -128,7 +136,12 @@ cmp.setup({
                 fallback()
             end
         end, { "i", "s" }),
-    }
+    },
+    enabled = function()
+        return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+            or require("cmp_dap").is_dap_buffer()
+    end
+
 })
 
 --------------------------- DAP ---------------------------
@@ -239,3 +252,4 @@ vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
 vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
     require('dap.ui.widgets').preview()
 end)
+
