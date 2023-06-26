@@ -146,6 +146,12 @@ cmp.setup({
 
 --------------------------- DAP ---------------------------
 
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local conf = require("telescope.config").values
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+
 require("mason-nvim-dap").setup({
     ensure_installed = { 'codelldb' },
     -- ensure_installed = { 'cppdbg' },
@@ -158,9 +164,39 @@ require("mason-nvim-dap").setup({
         end,
         codelldb = function(config)
             for i, _ in pairs(config.configurations) do
-                config.configurations[i].sourceMap = {
-                    [os.getenv("HOME") .. "/documents"] = (os.getenv("HOME") .. "/Documents"), -- For some reason codelldb has some troubles with case sensitivity
-                }
+                config.configurations[i].program = function()
+                    print(vim.api.nvim_buf_get_name(0))
+                    local choice = vim.fn.input(
+                    "Compile the file / Run compiled executable / Another executable? [c]/r/a: ")
+                    if choice == "a" then
+                        return coroutine.create(function(coro)
+                            local opts = {}
+                            pickers.new(opts, {
+                                prompt_title = "Path to executable",
+                                finder = finders.new_oneshot_job({ "fd", "--hidden", "--no-ignore", "--type", "x" }, {}),
+                                sorter = conf.generic_sorter(opts),
+                                attach_mappings = function(buffer_number)
+                                    actions.select_default:replace(function()
+                                        actions.close(buffer_number)
+                                        coroutine.resume(coro, action_state.get_selected_entry()[1])
+                                    end)
+                                    return true
+                                end,
+                            }):find()
+                        end)
+                    elseif choice == 'r' then
+                        return vim.fn.expand("%:p:r")
+                    else
+                        vim.notify(vim.fn.expand("%:p:r"))
+                        os.execute("clang++ -g -std=c++20 -o " .. vim.fn.expand("%:p:r") .. " " .. vim.fn.expand("%:p"))
+                        return vim.fn.expand("%:p:r")
+                    end
+                end
+                -- For some reason codelldb has some troubles with case sensitivity
+                -- If you have your breakpoints missed, try uncommenting this lines
+                -- config.configurations[i].sourceMap = {
+                -- [os.getenv("HOME") .. "/documents"] = (os.getenv("HOME") .. "/Documents"),
+                -- }
             end
             require('mason-nvim-dap').default_setup(config) -- don't forget this!
         end,
@@ -252,4 +288,3 @@ vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
 vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
     require('dap.ui.widgets').preview()
 end)
-
