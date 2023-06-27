@@ -24,7 +24,7 @@ export BROWSER='open -u'
 
 # ZSH_HIGHLIGHTHIGHLIGHTERS=(main brackets cursor)
 
-export PATH="/usr/local/opt/ruby/bin:$HOME/.emacs.d/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:/Users/anton/Documents/tg/bin:/usr/local/opt/texinfo/bin:/opt/metasploit-framework/bin:/usr/local/opt/ncurses/bin:/usr/local/opt/openjdk/bin:/usr/local/Cellar/node/18.10.0/bin:$PATH"
+export PATH="/Users/anton/.ghcup/bin:/usr/local/opt/ruby/bin:$HOME/.emacs.d/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:/Users/anton/Documents/tg/bin:/usr/local/opt/texinfo/bin:/opt/metasploit-framework/bin:/usr/local/opt/ncurses/bin:/usr/local/opt/openjdk/bin:/usr/local/Cellar/node/18.10.0/bin:$PATH"
 
 
 export MallocNanoZone=0

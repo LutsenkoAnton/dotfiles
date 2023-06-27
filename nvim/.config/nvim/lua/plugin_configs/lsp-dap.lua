@@ -193,7 +193,7 @@ require("mason-nvim-dap").setup({
                     end
                 end
                 -- For some reason codelldb has some troubles with case sensitivity
-                -- If you have your breakpoints missed, try uncommenting this lines
+                -- If you have your breakpoints missed, try uncommenting these lines
                 -- config.configurations[i].sourceMap = {
                 -- [os.getenv("HOME") .. "/documents"] = (os.getenv("HOME") .. "/Documents"),
                 -- }
