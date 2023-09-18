@@ -9,7 +9,7 @@ alias tmuxconf="$EDITOR ~/.tmux.conf"
 
 # Make program replacements
 
-alias g++=g++-12
+# alias g++=g++-12
 alias vim=neovide
 alias vi=vim
 alias grep=rg
@@ -24,15 +24,15 @@ alias ll="exa -l --icons"
 alias l="exa -lFh --icons"
 alias la="exa -laFh --icons"
 
-# Enables Ctrl+O for neomutt
+# # Enables Ctrl+O for neomutt
+#
+# alias neomutt="stty discard undef && neomutt"
 
-alias neomutt="stty discard undef && neomutt"
-
-# Postgres aliases
-
-alias startpost='pg_ctl start -D "/usr/local/var/postgres"'
-alias stoppost='pg_ctl stop -D "/usr/local/var/postgres"'
-alias restartpost='stoppost && sleep 1 && startpost'
-alias statuspost='pg_ctl status -D "/usr/local/var/postgres"'
+# # Postgres aliases
+#
+# alias startpost='pg_ctl start -D "/usr/local/var/postgres"'
+# alias stoppost='pg_ctl stop -D "/usr/local/var/postgres"'
+# alias restartpost='stoppost && sleep 1 && startpost'
+# alias statuspost='pg_ctl status -D "/usr/local/var/postgres"'
 
 

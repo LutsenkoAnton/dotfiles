@@ -153,6 +153,7 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 require("mason-nvim-dap").setup({
+    automatic_installation = false,
     ensure_installed = { 'codelldb' },
     -- ensure_installed = { 'cppdbg' },
     handlers = {
@@ -165,7 +166,7 @@ require("mason-nvim-dap").setup({
         codelldb = function(config)
             for i, _ in pairs(config.configurations) do
                 config.configurations[i].program = function()
-                    print(vim.api.nvim_buf_get_name(0))
+                    vim.notify(i)
                     local choice = vim.fn.input(
                     "Compile the file / Run compiled executable / Another executable? [c]/r/a: ")
                     if choice == "a" then
