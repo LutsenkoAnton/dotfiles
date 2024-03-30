@@ -16,10 +16,8 @@ return {
     },
     {
         "akinsho/toggleterm.nvim",
-        tag = '*',
-        config = function()
-            require("toggleterm").setup()
-        end
+        version = '*',
+        config = true
     },
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+    -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 }

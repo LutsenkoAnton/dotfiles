@@ -1,5 +1,6 @@
 vim.wo.spell = true
 vim.bo.spelllang = "ru_ru,en_us"
+vim.cmd(':TSBufDisable highlight')
 require('cmp').setup.buffer {
     formatting = {
         format = function(entry, vim_item)

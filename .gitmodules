@@ -1,7 +1,4 @@
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "templates/"]
-    path = templates/.templates
-    url = https://github.com/LutsenkoAnton/templates
 

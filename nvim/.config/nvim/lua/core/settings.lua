@@ -36,7 +36,7 @@ vim.o.undofile = true
 vim.o.guifont = "Fira Code"
 -- Allow clipboard copy paste in neovim
 vim.g.neovide_input_use_logo = 1
-vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('', '<C-V>', '+p<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('!', '<C-V>', '<C-R>+', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('t', '<C-V>', '<C-R>+', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('v', '<C-V>', '<C-R>+', { noremap = true, silent = true })

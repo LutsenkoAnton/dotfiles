@@ -4,12 +4,6 @@ return {
         build = ':TSUpdate'
     },
     {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.1',
-        -- or                          , branch = '0.1.x',
-        dependencies = { { 'nvim-lua/plenary.nvim' } }
-    },
-    {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to `main` branch for the latest features
         config = function()
@@ -29,4 +23,7 @@ return {
     'mbbill/undotree',
     'lervag/vimtex',
     'hrsh7th/cmp-omni',
+    'shirk/vim-gas',
+    'lambdalisue/suda.vim',
+    -- 'henry-hsieh/riscv-asm-vim',
 }

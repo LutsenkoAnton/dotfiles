@@ -5,19 +5,38 @@ require("mason-lspconfig").setup({
 
 -- Setup keybindings
 local on_attach = function(_, _)
+    local wk = require("which-key");
+    wk.register({
+        ["<leader>"] = {
+            ["ca"] = { function() vim.lsp.buf.code_action { apply = true } end, "Code action", mode = { "v", "n" } },
+            D = { vim.lsp.buf.type_definition, "Go to type definition" },
+            [ "rn" ] = { vim.lsp.buf.rename, "Rename variable" },
+            e = { vim.diagnostic.open_float, "Show diagnostic message in float window" },
+            -- q = { vim.diagnostic.setloclist, "" },
+        },
+        g = {
+            D = { vim.lsp.buf.declaration, "Go to declaration" },
+            d = { vim.lsp.buf.definition, "Go to definition" },
+            r = { vim.lsp.buf.references, "Find references" },
+            i = { vim.lsp.implementation, "Go to implementation" },
+        },
+        K = { vim.lsp.buf.hover, "Hover over element" },
+        ["[d"] = { vim.diagnostic.goto_prev, "Go to previous diagnostic message" },
+        ["]d"] = { vim.diagnostic.goto_next, "Go to next diagnostic message" },
+    });
     vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format { async = true } end)
-    vim.keymap.set({ "v", "n" }, "<leader>ca", function() vim.lsp.buf.code_action { apply = true } end)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
-    vim.keymap.set('n', "<leader>D", vim.lsp.buf.type_definition)
-    vim.keymap.set('n', "<leader>rn", vim.lsp.buf.rename)
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+    -- vim.keymap.set({ "v", "n" }, "<leader>ca", function() vim.lsp.buf.code_action { apply = true } end)
+    -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
+    -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+    -- vim.keymap.set('n', 'gr', vim.lsp.buf.references)
+    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+    -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
+    -- vim.keymap.set('n', "<leader>D", vim.lsp.buf.type_definition)
+    -- vim.keymap.set('n', "<leader>rn", vim.lsp.buf.rename)
+    -- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+    -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+    -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+    -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 end
 
 -- Setup language servers
@@ -168,7 +187,7 @@ require("mason-nvim-dap").setup({
                 config.configurations[i].program = function()
                     vim.notify(i)
                     local choice = vim.fn.input(
-                    "Compile the file / Run compiled executable / Another executable? [c]/r/a: ")
+                        "Compile the file / Run compiled executable / Another executable? [c]/r/a: ")
                     if choice == "a" then
                         return coroutine.create(function(coro)
                             local opts = {}
@@ -269,23 +288,43 @@ vim.fn.sign_define("DapStopped", { text = '→', texthl = '', linehl = '', numhl
 vim.fn.sign_define("DapBreakpointRejected", { text = '', texthl = '', linehl = '', numhl = 'DiagnosticSignError' })
 
 -- DAP mappings
-vim.keymap.set('n', '<Leader>dc', function() require('dap').continue() end)
-vim.keymap.set('n', '<Leader>do', function() require('dap').step_over() end)
-vim.keymap.set('n', '<Leader>di', function() require('dap').step_into() end)
-vim.keymap.set('n', '<Leader>du', function() require('dap').step_out() end)
+local wk = require("which-key"); -- TODO
+wk.register({
+    d = {
+        name = "Debugging",
+        c = { function() require('dap').continue() end, "Continue debugging" },
+        o = { function() require('dap').step_over() end, "Step over" },
+        i = { function() require('dap').step_into() end, "Step into" },
+        u = { function() require('dap').step_out() end, "Step out" },
+        r = { function() require('dap').repl.open() end, "Open REPL" },
+        l = { function() require('dap').run_last() end, "Restart debug session" },
+        p = { function() require('dap.ui.widgets').preview() end, "Widgets preview?", mode = {"v", "n"} }
+    },
+    b = {
+        name = "Breakpoints",
+        l = { function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end, "Breakpoint with log message" },
+        -- c = { function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '), nil, nil) end, "Breakpoint on condition" },
+        ["cl"] = { function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '), nil, vim.fn.input("Log point message: ")) end, "Breakpoint on condition with log message" }
+    },
+    B = { function() require('dap').set_breakpoint() end, "Set breakpoint" }
+}, { prefix = "<leader>" });
+-- vim.keymap.set('n', '<Leader>dc', function() require('dap').continue() end)
+-- vim.keymap.set('n', '<Leader>do', function() require('dap').step_over() end)
+-- vim.keymap.set('n', '<Leader>di', function() require('dap').step_into() end)
+-- vim.keymap.set('n', '<Leader>du', function() require('dap').step_out() end)
 vim.keymap.set('n', '<Leader>b', function() require('dap').toggle_breakpoint() end)
-vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
-vim.keymap.set('n', '<Leader>bl',
-    function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+-- vim.keymap.set('n', '<Leader>B', function() require('dap').set_breakpoint() end)
+-- vim.keymap.set('n', '<Leader>bl',
+    -- function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
 vim.keymap.set('n', '<leader>bc',
-    function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '), nil, nil) end)
-vim.keymap.set('n', '<leader>bcl',
-    function()
-        require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '), nil,
-            vim.fn.input("Log point message: "))
-    end)
-vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
-vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
-vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
-    require('dap.ui.widgets').preview()
-end)
+    function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '), nil, nil) end, { desc = "Breakpoint on condition" })
+-- vim.keymap.set('n', '<leader>bcl',
+    -- function()
+    --     require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '), nil,
+    --         vim.fn.input("Log point message: "))
+    -- end)
+-- vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
+-- vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
+-- vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
+--     require('dap.ui.widgets').preview()
+-- end)

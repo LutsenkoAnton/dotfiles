@@ -13,16 +13,16 @@ alias tmuxconf="$EDITOR ~/.tmux.conf"
 alias vim=neovide
 alias vi=vim
 alias grep=rg
-alias ls=exa
+alias ls=eza
 alias ps=procs
 alias diff=delta
 
 
 # exa aliases
 
-alias ll="exa -l --icons"
-alias l="exa -lFh --icons"
-alias la="exa -laFh --icons"
+alias ll="eza -l --icons"
+alias l="eza -lh --icons"
+alias la="eza -lah --icons"
 
 # # Enables Ctrl+O for neomutt
 #
