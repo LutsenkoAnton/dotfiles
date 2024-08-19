@@ -1,29 +1,38 @@
 return {
     {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate'
-    },
-    {
         "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to `main` branch for the latest features
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to defaults
-            })
-        end
+        event = "VeryLazy",
+        opts = {},
     },
     {
         'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
+        event = { "BufNewFile", "BufReadPost" },
+        opts = {}
+    },
+    {
+        'rcarriga/nvim-notify',
+        init = function()
+            vim.o.termguicolors = true
+        end,
+        opts = {
+            background_colour = "#000000"
+        },
+        config = function(_, opts)
+            require('notify').setup(opts)
+            vim.notify = require('notify')
         end
     },
-    'rcarriga/nvim-notify',
-    'ryanoasis/vim-devicons',
-    'mbbill/undotree',
-    'lervag/vimtex',
-    'hrsh7th/cmp-omni',
-    'shirk/vim-gas',
-    'lambdalisue/suda.vim',
-    -- 'henry-hsieh/riscv-asm-vim',
+    {
+        'mbbill/undotree',
+        event = 'VeryLazy',
+    },
+    {
+        'shirk/vim-gas',
+        -- 'henry-hsieh/riscv-asm-vim',
+        ft = 'asm',
+    },
+    {
+        'lambdalisue/suda.vim',
+        cmd = { 'SudaWrite', 'SudaRead' },
+    },
 }

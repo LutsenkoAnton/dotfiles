@@ -4,4 +4,6 @@ if vim.g.neovide then
     -- Enable Transparency for Neovide
     -- Helper function for transparency formatting
     vim.g.neovide_transparency = 0.8
+    vim.o.winblend = 70
+    vim.o.pumblend = 70
 end

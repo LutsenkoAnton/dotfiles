@@ -15,8 +15,8 @@ vim.o.softtabstop = 4
 vim.o.expandtab = true
 vim.o.autoindent = true
 vim.o.smartindent = true
-vim.cmd('autocmd BufEnter * set formatoptions-=cro')
-vim.cmd('autocmd BufEnter * setlocal formatoptions-=cro')
+vim.cmd("autocmd BufEnter * set formatoptions-=cro")
+vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
 
 -- Split settings
 vim.o.splitbelow = true
@@ -33,9 +33,12 @@ vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.o.undofile = true
 
 -- Neovide settings
-vim.o.guifont = "Fira Code"
+vim.o.guifont = "Fira Code:h16"
 -- Allow clipboard copy paste in neovim
 vim.g.neovide_input_use_logo = 1
+
+-- Disable perl provider
+vim.g.loaded_perl_provider = 0
 -- vim.api.nvim_set_keymap('', '<C-V>', '+p<CR>', { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('!', '<C-V>', '<C-R>+', { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('t', '<C-V>', '<C-R>+', { noremap = true, silent = true })

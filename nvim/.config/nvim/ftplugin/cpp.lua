@@ -10,4 +10,4 @@ function RunCppFile()
     -- vim.cmd("silent !rm -rf " .. dir .. "/a.out*")
 end
 
-vim.keymap.set("n", "<leader>r", RunCppFile)
+vim.keymap.set("n", "<leader>r", RunCppFile, { desc = "Run C++ File" })
