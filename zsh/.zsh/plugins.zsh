@@ -19,10 +19,11 @@ zinit wait lucid light-mode depth=1 for \
 
 # Usual plugins 
 zinit wait=1 lucid light-mode for \
-    Aloxaf/fzf-tab \
-    ael-code/zsh-colored-man-pages
+    Aloxaf/fzf-tab
 
 # Stealing from oh my zsh
 
 zinit wait=1 lucid light-mode for \
-    OMZP::sudo
+    OMZP::sudo \
+    OMZP::colored-man-pages
+
