@@ -1,7 +1,7 @@
 return {
-    {
-        "akinsho/toggleterm.nvim",
-        version = '*',
-        cmd = 'TermExec'
-    },
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		cmd = "TermExec",
+	},
 }
