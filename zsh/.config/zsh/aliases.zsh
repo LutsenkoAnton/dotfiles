@@ -1,7 +1,7 @@
 # Aliases
 if [[ -x $(command -v neovide) ]]; then
     alias vim="neovide --fork"
-elif [[ -x $(command -v nvim) ]]; them
+elif [[ -x $(command -v nvim) ]]; then
     alias vim=nvim
 fi
 if [[ -x $(command -v vim) ]]; then
