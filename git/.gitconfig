@@ -1,0 +1,51 @@
+[delta]
+    minus-style                   = syntax "#37222c"
+    minus-non-emph-style          = syntax "#37222c"
+    minus-emph-style              = syntax "#713137"
+    minus-empty-line-marker-style = syntax "#37222c"
+    line-numbers-minus-style      = "#b2555b"
+    plus-style                    = syntax "#20303b"
+    plus-non-emph-style           = syntax "#20303b"
+    plus-emph-style               = syntax "#2c5a66"
+    plus-empty-line-marker-style  = syntax "#20303b"
+    line-numbers-plus-style       = "#266d6a"
+    line-numbers-zero-style       = "#3b4261"
+    navigate = true
+    hyperlinks = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[user]
+	email = lutsenko.anton@icloud.com
+	name = LutsenkoAnton
+	signingkey = 569C1162015D1FD12C0B7997E2902A39F3DFCDC4
+[gpg]
+    program=gpg-from-pass
+[includeIf "gitdir:~/Documents/hse/os/"]
+    path=~/.gitconfig.hse
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[core]
+	editor = neovide --no-fork
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[init]
+	defaultBranch = master
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[commit]
+	gpgsign = true
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	ci = commit

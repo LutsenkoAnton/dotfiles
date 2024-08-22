@@ -1,0 +1,4 @@
+#!/bin/bash
+
+key=503EA64F97C7FDD357714E6E198E335C67838AFA
+gpg --batch --pinentry-mode=loopback --passphrase=$(pass "GPG/$key") $*

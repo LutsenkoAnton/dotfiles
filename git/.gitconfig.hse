@@ -1,0 +1,6 @@
+[user]
+    name = Луценко Антон Игоревич
+    signingkey = 503EA64F97C7FDD357714E6E198E335C67838AFA
+    email = ailutsenko@edu.hse.ru
+[gpg]
+    program=gpg-from-pass-hse
