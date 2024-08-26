@@ -1,2 +1,4 @@
 **/lazy-lock.json
 nvim/.config/nvim/spell
+tmux/.tmux/plugins/*
+!tmux/.tmux/plugins/tpm
