@@ -33,7 +33,7 @@ vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.o.undofile = true
 
 -- Neovide settings
-vim.o.guifont = "Fira Code:h16"
+vim.o.guifont = "Fira Code:h20"
 -- Allow clipboard copy paste in neovim
 vim.g.neovide_input_use_logo = 1
 

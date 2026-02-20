@@ -23,13 +23,20 @@ return {
 		},
 		opts = {
 			formatters_by_ft = {
-				lua = { "stylua" },
 				asm = { "asmfmt" },
 				bash = { "shfmt" },
-				zsh = { "shfmt" },
-				json = { "jq" },
+				c = { "clang-format" },
 				cpp = { "clang-format" },
+                go = { "gofmt" },
+                haskell = { "ormolu" },
+				json = { "jq" },
+				lua = { "stylua" },
+				markdown = { "prettier" },
+                -- proto = { "buf" },
 				python = { "isort", "black" },
+                rust = { "rustfmt" },
+				sql = { "sqlfmt" },
+				zsh = { "shfmt" },
 			},
 			defautlt_format_opts = {
 				async = true,

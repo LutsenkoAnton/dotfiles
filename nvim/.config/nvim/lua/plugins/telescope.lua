@@ -17,6 +17,13 @@ return {
 			{ "<leader>fg", require("telescope.builtin").live_grep, desc = "Live grep" },
 			{ "<leader>fb", require("telescope.builtin").buffers, desc = "Find buffers" },
 			{ "<leader>fh", require("telescope.builtin").help_tags, desc = "Find help" },
+			{
+				"<leader>fc",
+				function()
+					require("telescope.builtin").find_files({ cwd = "~/.config/nvim/" })
+				end,
+				desc = "Find config files",
+			},
 		},
 		cmd = "Telescope",
 		opts = {

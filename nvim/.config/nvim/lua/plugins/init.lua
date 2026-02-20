@@ -1,14 +1,20 @@
 return {
 	{
+		"m4xshen/hardtime.nvim",
+		lazy = false,
+		dependencies = { "MunifTanjim/nui.nvim" },
+		opts = {},
+	},
+	{
 		"kylechui/nvim-surround",
 		event = "VeryLazy",
 		opts = {},
 	},
-	{
-		"numToStr/Comment.nvim",
-		event = { "BufNewFile", "BufReadPost" },
-		opts = {},
-	},
+	-- {
+	-- 	"numToStr/Comment.nvim",
+	-- 	event = { "BufNewFile", "BufReadPost" },
+	-- 	opts = {},
+	-- },
 	{
 		"rcarriga/nvim-notify",
 		init = function()
