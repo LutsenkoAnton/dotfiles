@@ -15,3 +15,12 @@ fi
 if [[ -x $(command -v thefuck) ]]; then
     eval "$(thefuck --alias)"
 fi
+
+if [[ -x $(command -v opam) ]]; then
+    eval "$(opam env)"
+fi
+
+# if [[ -x $(command -v stack) ]]; then
+#     eval "$(stack --zsh-completion-script stack)"
+#     eval "$(stack --zsh-completion-script ghc)"
+# fi

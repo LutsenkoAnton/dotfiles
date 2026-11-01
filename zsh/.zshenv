@@ -52,6 +52,26 @@ fi
 if [[ -d "/usr/bin/core_perl" ]]; then
     export PATH="$PATH:/usr/bin/core_perl"
 fi
+if [[ -d "/home/anton/Documents/hse/curs/code/mapf-visualizer/bin" ]]; then
+    export PATH="$PATH:/home/anton/Documents/hse/curs/code/mapf-visualizer/bin"
+fi
+if [[ -d "$(go env GOPATH)/bin" ]]; then
+    export PATH="$PATH:$(go env GOPATH)/bin"
+fi
+if [[ -d "/home/anton/.config/foundry/bin" ]]; then
+    export PATH="$PATH:/home/anton/.config/.foundry/bin"
+fi
+
+if [[ -d "/home/anton/.ghcup/bin" ]]; then
+    export PATH="$PATH:/home/anton/.ghcup/bin"
+fi
+
+# Clippy
+if [ -f '/home/anton/Documents/hse/concurrency/workspace/concurrency-course/client/activate' ]; then . '/home/anton/Documents/hse/concurrency/workspace/concurrency-course/client/activate'; fi
+
+if [[ -d "/usr/share/gcc-14.2.1/python" ]]; then
+    export PYTHONPATH="$PYTHONPATH:/usr/share/gcc-14.2.1/python"
+fi
 
 # Setting editor and browser
 if [[ -x $(command -v neovide) ]]; then
@@ -70,3 +90,10 @@ elif [[ -x $(command -v lynx) ]]; then
 else
     export BROWSER='elinks'
 fi
+
+
+export PATH="$PATH:/home/anton/.config/.foundry/bin"
+
+# The next line updates PATH for CLI.
+if [ -f '/home/anton/yandex-cloud/path.bash.inc' ]; then source '/home/anton/yandex-cloud/path.bash.inc'; fi
+

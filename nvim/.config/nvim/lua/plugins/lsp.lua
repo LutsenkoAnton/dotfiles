@@ -59,7 +59,7 @@ return {
 						},
 						workspace = {
 							checkThirdParty = false,
-							library = vim.api.nvim_get_runtime_file("", true),
+							library = table.insert(vim.api.nvim_get_runtime_file("", true), "/usr/share/hypr/stubs"),
 						},
 						telemetry = {
 							enable = false,
@@ -67,6 +67,8 @@ return {
 					},
 				},
 			})
+            -- local esp32 = require("esp32")
+            -- vim.lsp.config("clangd", esp32.lsp_config())
             vim.lsp.config("asy_lsp", {
                 cmd = {'asy', '-lsp'},
                 filetypes = {'asy'},
@@ -115,4 +117,7 @@ return {
 			})
 		end,
 	},
+    {
+        "Aietes/esp32.nvim",
+    }
 }

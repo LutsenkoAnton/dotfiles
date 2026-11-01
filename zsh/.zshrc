@@ -1,3 +1,6 @@
-for file in $(ls $HOME/.config/zsh/*); do
-    source $file
+for file in $(ls -f $HOME/.config/zsh); do
+    source $HOME/.config/zsh/$file
 done
+
+
+

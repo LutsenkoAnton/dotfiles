@@ -17,16 +17,21 @@ if [[ -x $(command -v delta) ]]; then
     alias diff=delta
 fi
 if [[ -x $(command -v eza) ]]; then
-    alias ls="eza --hyperlink --icons"
+    alias ls="eza --hyperlink --icons auto"
 elif [[ -x $(command -v exa) ]]; then
     alias ls=exa
 fi
+if [[ -x $(command -v claude) ]]; then
+    alias claude-chat='claude --tools "" --disallowedTools "mcp__*"'
+fi
+
 alias ll="ls -lh"
 alias la="ls -lah"
 alias lz="ll --total-size --sort size"
 alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -i"
+alias history="history 0"
 alias dud="du -h -d 1"
 alias killer="ps | fzf -m | awk '{print \$1}' | xargs kill"
 alias assassin="ps | fzf -m | awk '{print \$1}' | xargs kill -9"

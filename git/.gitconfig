@@ -24,12 +24,22 @@
     program=gpg-from-pass
 [includeIf "gitdir:~/Documents/hse/os/"]
     path=~/.gitconfig.hse
+[includeIf "gitdir:~/Documents/hse/msbdp/"]
+    path=~/.gitconfig.msbdp.hse
+[includeIf "gitdir:~/Documents/hse/databases/"]
+    path=~/.gitconfig.db.hse
+[includeIf "gitdir:~/Documents/hse/cuda/"]
+    path=~/.gitconfig.db.hse
+[includeIf "gitdir:~/Documents/hse/caos2/"]
+    path=~/.gitconfig.db.hse
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+[credential]
+    helper = !type pass-git-helper >/dev/null && pass-git-helper $@
 [core]
     pager = delta
 [interactive]
@@ -48,3 +58,7 @@
 	st = status
 	br = branch
 	ci = commit
+[http]
+	postBuffer = 524288000
+[sendpack]
+	sideband = false

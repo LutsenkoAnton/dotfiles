@@ -27,3 +27,10 @@ zinit wait=1 lucid light-mode for \
     OMZP::sudo \
     OMZP::colored-man-pages
 
+# sqlx compltion
+
+zinit wait lucid for \
+    as"completion" blockf is-snippet "$HOME/.config/zsh/completions/_sqlx"
+
+# The next line enables shell command completion for yc.
+if [ -f '/home/anton/yandex-cloud/completion.zsh.inc' ]; then source '/home/anton/yandex-cloud/completion.zsh.inc'; fi
